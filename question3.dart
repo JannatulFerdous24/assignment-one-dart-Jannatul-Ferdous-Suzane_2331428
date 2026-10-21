@@ -1,0 +1,60 @@
+// question3.dart
+
+class BankAccount {
+  String accountNumber;
+  String accountHolder;
+  double balance;
+  String accountType;
+
+  BankAccount(this.accountNumber, this.accountHolder, this.accountType)
+      : balance = 0.0;
+
+  void deposit(double amount) {
+    if (amount > 0) {
+      balance += amount;
+    }
+  }
+
+  void withdraw(double amount) {
+    if (amount <= 0) {
+      return;
+    }
+
+    if (balance >= amount) {
+      balance -= amount;
+    } else {
+      print(
+        "Insufficient funds for withdrawal of $amount from account $accountNumber",
+      );
+    }
+  }
+
+  double getBalance() {
+    return balance;
+  }
+
+  void displayAccountInfo() {
+    print(
+      "Account: $accountNumber, Holder: $accountHolder, Type: $accountType, Balance: $balance",
+    );
+  }
+}
+
+void main() {
+  BankAccount account1 = BankAccount("12345", "Alice", "Savings");
+  BankAccount account2 = BankAccount("67890", "Bob", "Checking");
+  BankAccount account3 = BankAccount("11111", "Charlie", "Savings");
+
+  account1.deposit(1000.0);
+  account2.deposit(500.0);
+  account3.deposit(2000.0);
+
+  account1.withdraw(200.0);
+  account2.withdraw(100.0);
+
+  account1.displayAccountInfo();
+  account2.displayAccountInfo();
+  account3.displayAccountInfo();
+
+  account2.withdraw(1000.0);
+}
